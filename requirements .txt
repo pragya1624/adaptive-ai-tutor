@@ -1,0 +1,17 @@
+# Adaptive AI Tutor — Requirements
+# No external libraries needed!
+# Runs on pure Python 3.11+
+#
+# Built-in modules used:
+#   - random    (learning gain randomness)
+#   - json      (save/load student progress)
+#   - os        (file & folder management)
+#   - datetime  (timestamp on save files)
+#   - dataclasses (Student data structure)
+#   - typing    (type hints)
+#
+# Coming soon (optional upgrades):
+#   pip install matplotlib   (progress charts)
+#   pip install pandas       (multi-student analysis)
+#   pip install flask        (web interface)
+#   pip install anthropic    (AI explanations)
