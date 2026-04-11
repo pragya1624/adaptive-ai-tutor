@@ -183,7 +183,4 @@ Loading is automatic — just use the same student name next time.
 - 🌐 Flask — web interface
 - 🤖 Claude AI — real explanations when student is stuck
 
----
 
-## 📄 License
-MIT
