@@ -1,0 +1,10 @@
+# Adaptive AI Tutor — Requirements
+#
+# Core project — no install needed:
+#   Built on pure Python 3.11+
+#
+# For Pandas analysis (analysis.py):
+pandas>=2.0.0
+#
+# Install with:
+#   pip install pandas
