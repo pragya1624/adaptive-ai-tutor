@@ -4,129 +4,96 @@ A personal AI tutor that teaches you math step by step — remembers your progre
 
 ---
 
+## 🖼️ Screenshots
+
+### Login Page
+![Login](screenshots/login.png)
+
+### Dashboard
+![Dashboard](screenshots/dashboard.png)
+
+### Study Results
+![Study Results](screenshots/study_result.png)
+
+### Leaderboard
+![Leaderboard](screenshots/leaderboard.png)
+
+---
+
 ## 📁 Project Structure
 
 ```
 adaptive-ai-tutor/
 ├── tutor.py          ← brain of the project (do not edit)
-├── main.py           ← run this to study as a student
-├── analysis.py       ← compare all students in tables (needs Pandas)
-├── charts.py         ← visual progress charts (needs Matplotlib)
+├── main.py           ← run this in terminal to study
+├── app.py            ← run this to open the web app
+├── analysis.py       ← compare all students in tables
+├── charts.py         ← visual progress charts
 ├── requirements.txt  ← libraries needed
 ├── README.md         ← you are here
-└── student_data/     ← auto-created, stores every student's progress
-    ├── rahul.json
-    ├── priya.json
-    └── ...
+├── 📁 templates/     ← web app pages
+│     ├── base.html
+│     ├── index.html
+│     ├── dashboard.html
+│     ├── study_result.html
+│     └── leaderboard.html
+├── 📁 screenshots/   ← project screenshots
+└── 📁 student_data/  ← auto-created, stores student progress
 ```
 
 ---
 
-## 🚀 How to Run
+## 🚀 How to Run — Web App (Recommended)
 
-**Step 1** — Open your Adaptive AI Tutor folder in File Explorer
+**Step 1** — Open your project folder → click address bar → type `powershell` → Enter
 
-**Step 2** — Click the address bar → type `powershell` → press Enter
-
-**Step 3** — Type and press Enter:
+**Step 2** — Install Flask (one time only):
 ```bash
-py main.py
+py -m pip install flask
 ```
 
----
-
-## 👤 First Time (New Student)
-
-```
-Enter your name: Pragya
-
-👋 Welcome Pragya! You are a new student.
-
-What kind of learner are you?
-  1. Curious  — learns fast, remembers well
-  2. Lazy     — learns slowly, forgets quickly
-  3. Anxious  — struggles without proper order
-```
-
-Your profile is created and saved automatically.
-
----
-
-## 🔄 Returning Student
-
-Just enter the same name — everything loads automatically:
-
-```
-Enter your name: Pragya
-👋 Welcome back, Pragya!
-📖 Sessions done: 10
-```
-
----
-
-## 📋 The Menu (main.py)
-
-```
-  1. Auto study        → tutor picks best topic for you
-  2. Study a topic     → you choose which topic to focus on
-  3. Progress report   → see your scores across all topics
-  4. See all students  → list everyone saved on this computer
-  5. Exit              → saves and closes
-```
-
----
-
-## 📊 Student Analysis — Tables (analysis.py)
-
-Compare all students side by side using Pandas.
-
-**Install once:**
+**Step 3** — Start the web app:
 ```bash
-pip install pandas
+py app.py
 ```
 
-**Run:**
+**Step 4** — Open your browser and go to:
+```
+http://localhost:5000
+```
+
+---
+
+## 💻 How to Run — Terminal Version
+
 ```bash
-py analysis.py
+py main.py        → study as a student
+py analysis.py    → see student comparison tables
+py charts.py      → see visual progress charts
 ```
 
-**4 tables you get:**
+---
 
-| Table | What it shows |
+## 👤 How Students Register
+
+No signup needed. Just:
+1. Open `http://localhost:5000`
+2. Type your name
+3. Pick your learning style
+4. Click **Enter**
+
+Returning students just type their name — progress loads automatically.
+
+---
+
+## 📋 The Web App Pages
+
+| Page | What it does |
 |---|---|
-| Summary | Sessions, overall %, mastered topics per student |
-| Knowledge Breakdown | Every topic score for every student |
-| Strongest & Weakest | Best and worst topic per student |
-| Leaderboard | Students ranked by overall score |
-
-Also exports a CSV file → open in Excel!
-
----
-
-## 📈 Visual Charts (charts.py)
-
-See your progress as beautiful colourful charts.
-
-**Install once:**
-```bash
-pip install matplotlib
-```
-
-**Run:**
-```bash
-py charts.py
-```
-
-**4 charts you get:**
-
-| Chart | What it shows |
-|---|---|
-| Progress Bar Chart | One student's score per topic — colour coded |
-| All Students Comparison | Everyone side by side per topic |
-| Leaderboard Chart | Horizontal bars ranked by overall score |
-| Radar / Spider Chart | Web shape showing knowledge spread |
-
-Charts are saved as PNG images in your `student_data` folder automatically.
+| Login | Enter name and learning style |
+| Dashboard | See progress, study topics, view scores |
+| Study Results | See what you learned each session |
+| Leaderboard | Compare all students ranked by score |
 
 ---
 
@@ -147,7 +114,7 @@ Charts are saved as PNG images in your `student_data` folder automatically.
 
 ---
 
-## 🎭 Personalities
+## 🎭 Student Personalities
 
 | | Curious | Lazy | Anxious |
 |---|---|---|---|
@@ -159,7 +126,7 @@ Charts are saved as PNG images in your `student_data` folder automatically.
 
 ## 💾 How Saving Works
 
-- Progress saves **automatically** after every session
+- Progress saves automatically after every session
 - Each student gets their own file in `student_data/`
 - Same name = loads your progress. New name = fresh start
 - Delete your `.json` file to start over
@@ -169,24 +136,18 @@ Charts are saved as PNG images in your `student_data` folder automatically.
 ## ❓ Quick FAQ
 
 **Need to install anything?**
-Only Pandas and Matplotlib for analysis and charts.
-Everything else runs on pure Python.
-
 ```bash
-pip install pandas matplotlib
+py -m pip install flask pandas matplotlib
 ```
 
 **How to add a new student?**
-Just enter a new name in main.py — done automatically.
+Open the website and enter a new name — done automatically.
 
 **Forgot your name?**
-Pick option 4 in main.py to see all saved students.
+Check the leaderboard page — all students are listed there.
 
 **Want to start fresh?**
 Delete your file from the `student_data` folder.
-
-**How do I compare all students?**
-Run `py analysis.py` for tables or `py charts.py` for visuals.
 
 ---
 
@@ -194,22 +155,21 @@ Run `py analysis.py` for tables or `py charts.py` for visuals.
 
 ```
 Python 3.11+
+flask>=2.0.0       (for web app)
 pandas>=2.0.0      (for analysis.py)
 matplotlib>=3.7.0  (for charts.py)
 ```
 
-Install everything at once:
+Install everything:
 ```bash
-pip install pandas matplotlib
+py -m pip install flask pandas matplotlib
 ```
 
 ---
 
 ## 📦 Coming Soon
 
-Flask web app · Claude AI explanations · Online deployment
+Claude AI explanations · Online deployment · Password login
 
 ---
 
-## 📄 License
-MIT
