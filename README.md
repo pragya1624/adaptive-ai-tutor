@@ -10,7 +10,8 @@ A personal AI tutor that teaches you math step by step — remembers your progre
 adaptive-ai-tutor/
 ├── tutor.py          ← brain of the project (do not edit)
 ├── main.py           ← run this to study as a student
-├── analysis.py       ← run this to compare all students (needs Pandas)
+├── analysis.py       ← compare all students in tables (needs Pandas)
+├── charts.py         ← visual progress charts (needs Matplotlib)
 ├── requirements.txt  ← libraries needed
 ├── README.md         ← you are here
 └── student_data/     ← auto-created, stores every student's progress
@@ -75,30 +76,57 @@ Enter your name: Pragya
 
 ---
 
-## 📊 Student Analysis (analysis.py)
+## 📊 Student Analysis — Tables (analysis.py)
 
-Run this separately to compare all students using Pandas:
+Compare all students side by side using Pandas.
 
-**Step 1 — Install Pandas (one time only):**
+**Install once:**
 ```bash
 pip install pandas
 ```
 
-**Step 2 — Run:**
+**Run:**
 ```bash
 py analysis.py
 ```
 
-**What you get — 4 tables:**
+**4 tables you get:**
 
 | Table | What it shows |
 |---|---|
-| 📊 Summary | All students — sessions, overall %, mastered topics |
-| 📚 Knowledge Breakdown | Every topic score for every student side by side |
-| 💪 Strongest & Weakest | Best and worst topic per student |
-| 🏆 Leaderboard | Students ranked by overall score |
+| Summary | Sessions, overall %, mastered topics per student |
+| Knowledge Breakdown | Every topic score for every student |
+| Strongest & Weakest | Best and worst topic per student |
+| Leaderboard | Students ranked by overall score |
 
-Plus a **CSV file** exported to `student_data/all_students.csv` — open it in Excel!
+Also exports a CSV file → open in Excel!
+
+---
+
+## 📈 Visual Charts (charts.py)
+
+See your progress as beautiful colourful charts.
+
+**Install once:**
+```bash
+pip install matplotlib
+```
+
+**Run:**
+```bash
+py charts.py
+```
+
+**4 charts you get:**
+
+| Chart | What it shows |
+|---|---|
+| Progress Bar Chart | One student's score per topic — colour coded |
+| All Students Comparison | Everyone side by side per topic |
+| Leaderboard Chart | Horizontal bars ranked by overall score |
+| Radar / Spider Chart | Web shape showing knowledge spread |
+
+Charts are saved as PNG images in your `student_data` folder automatically.
 
 ---
 
@@ -141,8 +169,12 @@ Plus a **CSV file** exported to `student_data/all_students.csv` — open it in E
 ## ❓ Quick FAQ
 
 **Need to install anything?**
-Only Pandas for analysis.py — run `pip install pandas` once.
+Only Pandas and Matplotlib for analysis and charts.
 Everything else runs on pure Python.
+
+```bash
+pip install pandas matplotlib
+```
 
 **How to add a new student?**
 Just enter a new name in main.py — done automatically.
@@ -153,8 +185,8 @@ Pick option 4 in main.py to see all saved students.
 **Want to start fresh?**
 Delete your file from the `student_data` folder.
 
-**How do I see all students compared?**
-Run `py analysis.py` after installing Pandas.
+**How do I compare all students?**
+Run `py analysis.py` for tables or `py charts.py` for visuals.
 
 ---
 
@@ -162,19 +194,20 @@ Run `py analysis.py` after installing Pandas.
 
 ```
 Python 3.11+
-pandas >= 2.0.0   (only for analysis.py)
+pandas>=2.0.0      (for analysis.py)
+matplotlib>=3.7.0  (for charts.py)
 ```
 
-Install with:
+Install everything at once:
 ```bash
-pip install pandas
+pip install pandas matplotlib
 ```
 
 ---
 
 ## 📦 Coming Soon
 
-Matplotlib charts · Flask web app · Claude AI explanations
+Flask web app · Claude AI explanations · Online deployment
 
 ---
 
