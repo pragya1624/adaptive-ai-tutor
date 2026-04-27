@@ -13,10 +13,15 @@ import json
 import os
 import random
 from tutor import AdaptiveAITutor, TOPICS, PERSONALITIES
+from personality_detector import PersonalityDetector
 
 app = Flask(__name__)
 app.secret_key = "adaptive_ai_tutor_secret"
 SAVE_FOLDER = "student_data"
+
+# ── Start Personality Detector once (shared across all routes) ─────────────────
+pd = PersonalityDetector()
+pd.train()
 
 
 def get_all_students():
@@ -78,7 +83,6 @@ def login():
     student = get_student(name)
 
     if not student:
-        # Create new student
         tutor = AdaptiveAITutor(student_name=name, personality=personality)
         tutor.save()
 
@@ -88,7 +92,7 @@ def login():
 
 @app.route("/dashboard")
 def dashboard():
-    """Main student dashboard."""
+    """Main student dashboard — now includes personality snapshot."""
     name = session.get("student_name")
     if not name:
         return redirect(url_for("index"))
@@ -97,14 +101,14 @@ def dashboard():
     if not student:
         return redirect(url_for("index"))
 
-    # Build topic data for template
+    # Topic breakdown
     topics_data = []
     for topic in TOPICS:
         score = student["knowledge"].get(topic, 0)
         topics_data.append({
-            "name": topic.replace("_", " ").title(),
-            "key": topic,
-            "score": round(score * 100),
+            "name":   topic.replace("_", " ").title(),
+            "key":    topic,
+            "score":  round(score * 100),
             "status": (
                 "mastered"    if score >= 0.9 else
                 "learning"    if score >= 0.5 else
@@ -113,12 +117,16 @@ def dashboard():
             )
         })
 
+    # ── Personality snapshot for dashboard ────────────────────────────────────
+    personality_result = pd.detect(name)
+
     return render_template(
         "dashboard.html",
         student=student,
         topics=topics_data,
         overall=overall_score(student),
         mastered=mastered_count(student),
+        personality=personality_result,          # ← NEW: passed to template
     )
 
 
@@ -129,7 +137,7 @@ def study():
     if not name:
         return redirect(url_for("index"))
 
-    mode = request.form.get("mode", "auto")
+    mode  = request.form.get("mode", "auto")
     tutor = AdaptiveAITutor(student_name=name)
 
     results = []
@@ -151,14 +159,14 @@ def study():
 
     tutor.save()
 
-    student = get_student(name)
+    student    = get_student(name)
     topics_data = []
     for topic in TOPICS:
         score = student["knowledge"].get(topic, 0)
         topics_data.append({
-            "name": topic.replace("_", " ").title(),
-            "key": topic,
-            "score": round(score * 100),
+            "name":   topic.replace("_", " ").title(),
+            "key":    topic,
+            "score":  round(score * 100),
             "status": (
                 "mastered"    if score >= 0.9 else
                 "learning"    if score >= 0.5 else
@@ -177,6 +185,59 @@ def study():
     )
 
 
+@app.route("/personality")
+def personality():
+    """
+    Full personality analysis page.
+    Shows detected personality, confidence, probabilities and explanation.
+    """
+    name = session.get("student_name")
+    if not name:
+        return redirect(url_for("index"))
+
+    student = get_student(name)
+    if not student:
+        return redirect(url_for("index"))
+
+    result = pd.detect(name)
+
+    # Emoji per personality
+    emoji_map = {
+        "curious": "🔍",
+        "lazy":    "😴",
+        "anxious": "😰"
+    }
+    result["emoji"] = emoji_map.get(result["personality"], "🧠")
+
+    # Tips per personality
+    tips_map = {
+        "curious": [
+            "You love exploring — try tackling a harder topic next!",
+            "You retain information well — help reinforce by revisiting old topics.",
+            "Challenge yourself with the hardest difficulty setting.",
+        ],
+        "lazy": [
+            "Short sessions work best for you — aim for 5 mins a day.",
+            "Pick just one topic and stick with it this week.",
+            "Reward yourself after each session to stay motivated.",
+        ],
+        "anxious": [
+            "Always make sure prerequisites are mastered before moving on.",
+            "Slower is fine — understanding matters more than speed.",
+            "Review topics you've already learned to build confidence.",
+        ]
+    }
+    result["tips"] = tips_map.get(result["personality"], [])
+
+    return render_template(
+        "personality.html",
+        student=student,
+        result=result,
+        overall=overall_score(student),
+        mastered=mastered_count(student),
+    )
+
+
 @app.route("/leaderboard")
 def leaderboard():
     """Leaderboard of all students."""
@@ -184,12 +245,12 @@ def leaderboard():
     ranked = []
     for i, s in enumerate(students, 1):
         ranked.append({
-            "rank": i,
-            "name": s["name"],
+            "rank":       i,
+            "name":       s["name"],
             "personality": s["personality"],
-            "sessions": s["sessions"],
-            "overall": overall_score(s),
-            "mastered": mastered_count(s),
+            "sessions":   s["sessions"],
+            "overall":    overall_score(s),
+            "mastered":   mastered_count(s),
             "last_saved": s.get("last_saved", "—"),
         })
     return render_template("leaderboard.html", students=ranked)
