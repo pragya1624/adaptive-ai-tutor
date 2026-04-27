@@ -1,0 +1,162 @@
+[
+    {
+        "student_id": "s1",
+        "topic": "math",
+        "difficulty": 0,
+        "score": 80,
+        "time_taken": 45,
+        "session_number": 1
+    },
+    {
+        "student_id": "s1",
+        "topic": "math",
+        "difficulty": 1,
+        "score": 65,
+        "time_taken": 70,
+        "session_number": 2
+    },
+    {
+        "student_id": "s1",
+        "topic": "science",
+        "difficulty": 0,
+        "score": 90,
+        "time_taken": 30,
+        "session_number": 3
+    },
+    {
+        "student_id": "s1",
+        "topic": "history",
+        "difficulty": 1,
+        "score": 55,
+        "time_taken": 90,
+        "session_number": 4
+    },
+    {
+        "student_id": "s1",
+        "topic": "math",
+        "difficulty": 2,
+        "score": 50,
+        "time_taken": 120,
+        "session_number": 5
+    },
+    {
+        "student_id": "s1",
+        "topic": "science",
+        "difficulty": 1,
+        "score": 75,
+        "time_taken": 60,
+        "session_number": 6
+    },
+    {
+        "student_id": "s1",
+        "topic": "english",
+        "difficulty": 0,
+        "score": 85,
+        "time_taken": 40,
+        "session_number": 7
+    },
+    {
+        "student_id": "s1",
+        "topic": "history",
+        "difficulty": 0,
+        "score": 60,
+        "time_taken": 80,
+        "session_number": 8
+    },
+    {
+        "student_id": "s1",
+        "topic": "english",
+        "difficulty": 1,
+        "score": 70,
+        "time_taken": 55,
+        "session_number": 9
+    },
+    {
+        "student_id": "s1",
+        "topic": "math",
+        "difficulty": 1,
+        "score": 72,
+        "time_taken": 65,
+        "session_number": 10
+    },
+    {
+        "student_id": "s2",
+        "topic": "math",
+        "difficulty": 0,
+        "score": 60,
+        "time_taken": 80,
+        "session_number": 1
+    },
+    {
+        "student_id": "s2",
+        "topic": "science",
+        "difficulty": 0,
+        "score": 55,
+        "time_taken": 95,
+        "session_number": 2
+    },
+    {
+        "student_id": "s2",
+        "topic": "history",
+        "difficulty": 1,
+        "score": 45,
+        "time_taken": 110,
+        "session_number": 3
+    },
+    {
+        "student_id": "s2",
+        "topic": "english",
+        "difficulty": 0,
+        "score": 78,
+        "time_taken": 50,
+        "session_number": 4
+    },
+    {
+        "student_id": "s2",
+        "topic": "math",
+        "difficulty": 1,
+        "score": 50,
+        "time_taken": 100,
+        "session_number": 5
+    },
+    {
+        "student_id": "Swarnima",
+        "topic": "arithmetic",
+        "difficulty": 0,
+        "score": 19,
+        "time_taken": 1,
+        "session_number": 1
+    },
+    {
+        "student_id": "Swarnima",
+        "topic": "arithmetic",
+        "difficulty": 1,
+        "score": 37,
+        "time_taken": 1,
+        "session_number": 2
+    },
+    {
+        "student_id": "Swarnima",
+        "topic": "arithmetic",
+        "difficulty": 1,
+        "score": 57,
+        "time_taken": 1,
+        "session_number": 3
+    },
+    {
+        "student_id": "Swarnima",
+        "topic": "fractions",
+        "difficulty": 0,
+        "score": 18,
+        "time_taken": 1,
+        "session_number": 4
+    },
+    {
+        "student_id": "Swarnima",
+        "topic": "geometry",
+        "difficulty": 0,
+        "score": 14,
+        "time_taken": 1,
+        "session_number": 5
+    }
+]
